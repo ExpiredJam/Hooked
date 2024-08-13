@@ -1,0 +1,97 @@
+[gd_scene load_steps=11 format=3 uid="uid://dqeeydlw66fky"]
+
+[ext_resource type="Texture2D" uid="uid://dq5ltff2wd3d4" path="res://Enviroment/Hooked img's/Penguin_Angry.png" id="1_ohfx4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tw24e"]
+atlas = ExtResource("1_ohfx4")
+region = Rect2(0, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvxpe"]
+atlas = ExtResource("1_ohfx4")
+region = Rect2(400, 0, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lefs2"]
+atlas = ExtResource("1_ohfx4")
+region = Rect2(0, 400, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls7xp"]
+atlas = ExtResource("1_ohfx4")
+region = Rect2(400, 400, 400, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvlqq"]
+atlas = ExtResource("1_ohfx4")
+region = Rect2(0, 800, 400, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k6j8p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tw24e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvxpe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lefs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls7xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvlqq")
+}],
+"loop": true,
+"name": &"Penguin_Angry",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ayckt"]
+resource_name = "Penguin_Angry"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_j70te"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xyvn5"]
+_data = {
+"Penguin_Angry": SubResource("Animation_ayckt"),
+"RESET": SubResource("Animation_j70te")
+}
+
+[node name="Penguin_Angry" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2.408, 2.408)
+sprite_frames = SubResource("SpriteFrames_k6j8p")
+animation = &"Penguin_Angry"
+frame = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xyvn5")
+}
